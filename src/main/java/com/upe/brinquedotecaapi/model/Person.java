@@ -4,7 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class Person {
@@ -15,10 +16,10 @@ public class Person {
     private String cpf;
     private String name;
     private String lastName;
-    private DateTimeFormat birthday; //Esse aqui ta com a tipagem errada
+    private LocalDateTime birthday; //Esse aqui ta com a tipagem errada
     private Address address;
 
-    public Person(Long cpf, String name, String lastName, DateTimeFormat preco, Address address) {
+    public Person(String cpf, String name, String lastName, LocalDateTime preco, Address address) {
         this.cpf = cpf;
         this.name = name;
         this.lastName = lastName;
@@ -30,11 +31,11 @@ public class Person {
 
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -54,11 +55,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public DateTimeFormat getBirthday() {
+    public LocalDateTime getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(DateTimeFormat birthday) {
+    public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;
     }
 
