@@ -10,20 +10,20 @@ public class Child {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
+    private Long id;
     private String observations;
     private String description;
 
     public Child() {
     }
 
-    public Child(int id, String observations, String description) {
+    public Child(Long id, String observations, String description) {
         this.id = id;
         this.observations = observations;
         this.description = description;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

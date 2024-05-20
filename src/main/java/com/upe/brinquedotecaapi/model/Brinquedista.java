@@ -10,12 +10,12 @@ public class Brinquedista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
+    private Long id;
     private Person info;
     private Course course;
 
 
-    public Brinquedista(int id, Person info, Course course) {
+    public Brinquedista(Long id, Person info, Course course) {
         this.id = id;
         this.info = info;
         this.course = course;
@@ -25,11 +25,11 @@ public class Brinquedista {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
