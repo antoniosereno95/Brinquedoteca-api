@@ -10,12 +10,12 @@ public class Parent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
+    private Long id;
     private Person info;
     private LinkToInstitucion linkToInstitucion;
     private Child children[];
 
-    public Parent(int id, Person info, LinkToInstitucion linkToInstitucion, Child[] children) {
+    public Parent(Long id, Person info, LinkToInstitucion linkToInstitucion, Child[] children) {
         this.id = id;
         this.info = info;
         this.linkToInstitucion = linkToInstitucion;
@@ -26,11 +26,11 @@ public class Parent {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
