@@ -25,6 +25,10 @@ public class Person {
         this.address = address;
     }
 
+    public Person() {
+
+    }
+
     public Long getCpf() {
         return cpf;
     }
