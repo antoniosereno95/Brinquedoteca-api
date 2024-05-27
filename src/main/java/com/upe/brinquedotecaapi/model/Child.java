@@ -11,18 +11,17 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Child {
+public class Child extends Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Person Info;
     private String observations;
     private String description;
 
     public Child(Long id, Person info, String observations, String description) {
+        super();
         this.id = id;
-        this.Info = info;
         this.observations = observations;
         this.description = description;
     }

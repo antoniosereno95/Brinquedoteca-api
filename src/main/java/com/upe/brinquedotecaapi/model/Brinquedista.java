@@ -10,20 +10,12 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Brinquedista {
+public class Brinquedista extends Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Person info;
     private Course course;
-
-
-    public Brinquedista(Long id, Person info, Course course) {
-        this.id = id;
-        this.info = info;
-        this.course = course;
-    }
 
     public Brinquedista() {
 

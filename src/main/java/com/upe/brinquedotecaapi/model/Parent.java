@@ -10,20 +10,21 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Parent {
+public class Parent extends Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Person info;
     private LinkToInstitucion linkToInstitucion;
     private Child children[];
+    private String senha;
 
-    public Parent(Long id, Person info, LinkToInstitucion linkToInstitucion, Child[] children) {
+    public Parent(Long id, Person info, LinkToInstitucion linkToInstitucion, Child[] children ,String senha) {
+        super();
         this.id = id;
-        this.info = info;
         this.linkToInstitucion = linkToInstitucion;
         this.children = children;
+        this.senha = senha;
     }
 
     public Parent() {
