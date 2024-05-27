@@ -4,9 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Entity
-public class Child {
+@Getter
+@Setter
+public class Child extends Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,36 +19,13 @@ public class Child {
     private String observations;
     private String description;
 
+    public Child(Long id, Person info, String observations, String description) {
+        super();
+        this.id = id;
+        this.observations = observations;
+        this.description = description;
+    }
+
     public Child() {
-    }
-
-    public Child(Long id, String observations, String description) {
-        this.id = id;
-        this.observations = observations;
-        this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getObservations() {
-        return observations;
-    }
-
-    public void setObservations(String observations) {
-        this.observations = observations;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

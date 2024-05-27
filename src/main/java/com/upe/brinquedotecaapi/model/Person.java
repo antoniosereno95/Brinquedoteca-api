@@ -1,13 +1,14 @@
 package com.upe.brinquedotecaapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Entity
+@MappedSuperclass
+@Getter
+@Setter
 public class Person {
 
     @Id
@@ -16,58 +17,51 @@ public class Person {
     private String cpf;
     private String name;
     private String lastName;
-    private LocalDateTime birthday; //Esse aqui ta com a tipagem errada
-    private Address address;
+    private LocalDateTime birthday;
+    private String email;
+    //Tive que comnetar os dois abaixo pra usar o @MappedSuperclass
+    //private Address address;
+    //private Role role;
 
-    public Person(String cpf, String name, String lastName, LocalDateTime preco, Address address) {
-        this.cpf = cpf;
-        this.name = name;
-        this.lastName = lastName;
-        this.birthday = preco;
-        this.address = address;
-    }
-
+    //Inicio -> Antiga Classe Address
+    private String cep;
+    private String street; //rua
+    private String district; //bairro
+    private String city;
+    private String state; //estado
+    private int number;
+    private String supplement;
+    //Fim -> Antiga Classe Address
     public Person() {
 
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
+    //construtor normal para Child
+    public Person(Long id, String cpf, String name, String lastName, LocalDateTime birthday) {
+        this.id = id;
         this.cpf = cpf;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public LocalDateTime getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;
     }
 
-    public Address getAddress() {
-        return address;
-    }
+    //construtor completo para Parent
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public Person(Long id, String cpf, String name, String lastName,
+                  LocalDateTime birthday, String email, String cep, String street,
+                  String district, String city, String state, int number, String supplement) {
+        this.id = id;
+        this.cpf = cpf;
+        this.name = name;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.email = email;
+        this.cep = cep;
+        this.street = street;
+        this.district = district;
+        this.city = city;
+        this.state = state;
+        this.number = number;
+        this.supplement = supplement;
     }
 }
