@@ -28,28 +28,4 @@ public class Brinquedista {
     public Brinquedista() {
 
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Person getInfo() {
-        return info;
-    }
-
-    public void setInfo(Person info) {
-        this.info = info;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
 }

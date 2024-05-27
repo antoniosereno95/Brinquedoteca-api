@@ -22,13 +22,15 @@ public class Person {
     private String lastName;
     private LocalDateTime birthday;
     private Address address;
+    private Role role;
 
-    public Person(String cpf, String name, String lastName, LocalDateTime preco, Address address) {
+    public Person(String cpf, String name, String lastName, LocalDateTime preco, Address address ,Role role) {
         this.cpf = cpf;
         this.name = name;
         this.lastName = lastName;
         this.birthday = preco;
         this.address = address;
+        this.role = role;
     }
 
     public Person() {
