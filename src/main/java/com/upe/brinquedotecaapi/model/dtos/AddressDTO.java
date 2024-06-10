@@ -1,2 +1,27 @@
-package com.upe.brinquedotecaapi.model.dtos;public class AddressDTO {
+package com.upe.brinquedotecaapi.model.dtos;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+
+@AllArgsConstructor
+@Data
+public class AddressDTO {
+
+    private String cep;
+
+    private String street;
+
+    private String district;
+
+    private String city;
+
+    private String state;
+
+    private int number;
+
+    private String supplement;
 }

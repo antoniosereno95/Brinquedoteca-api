@@ -4,6 +4,7 @@ package com.upe.brinquedotecaapi.controller;
 
 
 
+import com.upe.brinquedotecaapi.controller.responses.ParentRegistrationResponse;
 import com.upe.brinquedotecaapi.model.dtos.LoginDTO;
 import com.upe.brinquedotecaapi.model.dtos.ParentRegistrationDTO;
 import com.upe.brinquedotecaapi.service.UserService;
@@ -17,18 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/parent")
 @RequiredArgsConstructor
-public class UserController {
+public class  ParentController {
 
     private final UserService userService;
 
 
     @PostMapping("/register")
     public ResponseEntity<?> registerParent(@RequestBody ParentRegistrationDTO registrationDTO) {
-            return ResponseEntity.ok(userService.registerParent(registrationDTO));
+            return ResponseEntity.ok(new ParentRegistrationResponse(userService.registerParent(registrationDTO)));
         }
 
-    @PostMapping("/login/parent")
-    public ResponseEntity<?> ParentLogin(@RequestBody LoginDTO loginDTO) {
+    @PostMapping("/login")
+    public ResponseEntity<?> parentLogin(@RequestBody LoginDTO loginDTO) {
         return ResponseEntity.ok(userService.parentLogin(loginDTO));
     }
 }
