@@ -29,7 +29,7 @@ public class UserService {
     private final AddressRepository addressRepository;
 
     public Parent registerParent(ParentRegistrationDTO registrationDTO) {
-        if (parentRepository.findByEmail(registrationDTO.getEmail()).isPresent()) {
+        if (findParentByEmail(registrationDTO.getEmail()) != null) {
             throw new ConflictException("Usuário já existe");
         }
         Parent parent = new Parent();
@@ -82,5 +82,11 @@ public class UserService {
         } else {
             throw new NotFoundException("Senha ou usuário incorretos");
         }
+    }
+
+    public Parent findParentByEmail(String parentEmail) {
+        return parentRepository
+                .findByEmail(parentEmail)
+                .orElseThrow(() -> new NotFoundException("Não foi possível encontrar pai ou responsável"));
     }
 }

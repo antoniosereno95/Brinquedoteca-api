@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "appointments")
 @Getter
@@ -16,11 +17,10 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private LocalDateTime dateTime;
 
-    @ManyToOne
-    private Child child;
+    @ManyToMany
+    private List<Child> child;
 
     @ManyToOne
     private Parent parent;
