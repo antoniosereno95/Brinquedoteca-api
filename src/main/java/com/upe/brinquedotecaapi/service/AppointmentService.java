@@ -1,7 +1,4 @@
 package com.upe.brinquedotecaapi.service;
-
-
-import com.upe.brinquedotecaapi.controller.responses.AppointmentResponse;
 import com.upe.brinquedotecaapi.model.Appointment;
 import com.upe.brinquedotecaapi.model.Child;
 import com.upe.brinquedotecaapi.model.Parent;
@@ -10,7 +7,6 @@ import com.upe.brinquedotecaapi.model.dtos.AppointmentWeeklyListingDTO;
 import com.upe.brinquedotecaapi.repository.AppointmentRepository;
 import com.upe.brinquedotecaapi.utils.exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -18,6 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -44,6 +41,16 @@ public class AppointmentService {
         appointment.setParent(parent);
 
         return appointmentRepository.save(appointment);
+    }
+
+    public List<Appointment> listParentsAppoitments(String email) {
+        Parent parent = userService.findParentByEmail(email);
+
+        LocalDate now = LocalDate.now();
+        return parent.getAppointments().stream()
+                .filter(appointment -> appointment.getArrival().isAfter(now.atStartOfDay()))
+                .sorted(Comparator.comparing(Appointment::getArrival))
+                .collect(Collectors.toList());
     }
 
     public  Map<LocalDate, List<AppointmentWeeklyListingDTO>> listWeeksAppointments() {

@@ -20,6 +20,9 @@ public class Parent extends Person {
     @OneToMany(mappedBy = "parent")
     private List<Child> children;
 
+    @OneToMany(mappedBy = "parent")
+    private List<Appointment> appointments;
+
     @OneToOne
     private Address address;
    }

@@ -26,4 +26,10 @@ public class AppointmentController {
     public ResponseEntity<?> listWeeksAppointments() {
         return ResponseEntity.ok(appointmentService.listWeeksAppointments());
     }
+
+    @Operation(summary = "Lista agendamentos de um responsável")
+    @GetMapping("/parent/list")
+    public ResponseEntity<?> listParentAppointments(@RequestParam String email) {
+        return ResponseEntity.ok(appointmentService.listParentsAppoitments(email).stream().map(AppointmentResponse::new));
+    }
 }
