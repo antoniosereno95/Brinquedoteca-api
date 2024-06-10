@@ -4,6 +4,7 @@ package com.upe.brinquedotecaapi.controller;
 
 
 
+import com.upe.brinquedotecaapi.controller.responses.ParentInfoResponse;
 import com.upe.brinquedotecaapi.controller.responses.ParentRegistrationResponse;
 import com.upe.brinquedotecaapi.model.dtos.LoginDTO;
 import com.upe.brinquedotecaapi.model.dtos.ParentRegistrationDTO;
@@ -11,10 +12,7 @@ import com.upe.brinquedotecaapi.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/parent")
@@ -33,6 +31,13 @@ public class  ParentController {
     @Operation(summary = "Fazer login como pai ou responsável")
     @PostMapping("/login")
     public ResponseEntity<?> parentLogin(@RequestBody LoginDTO loginDTO) {
-        return ResponseEntity.ok(userService.parentLogin(loginDTO));
+        userService.parentLogin(loginDTO);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Solicitar informações do responsável")
+    @GetMapping
+    public ResponseEntity<?> getParentInfo(@RequestParam String parentEmail) {
+        return ResponseEntity.ok(new ParentInfoResponse(userService.findParentByEmail(parentEmail)));
     }
 }

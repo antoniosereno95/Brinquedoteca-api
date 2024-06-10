@@ -3,6 +3,8 @@ package com.upe.brinquedotecaapi.model.dtos;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,5 +19,6 @@ public class ChildRegistrationDTO {
     private String parentEmail;
     private String observations;
     private String description;
+    private LocalDateTime birthday;
 
 }

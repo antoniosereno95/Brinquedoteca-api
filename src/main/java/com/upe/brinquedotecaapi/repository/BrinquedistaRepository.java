@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface BrinquedistaRepository extends JpaRepository<Brinquedista, Long> {
 
-    Optional<Brinquedista> findBrinquedistaByEmail(String email);
+    Optional<Brinquedista> findByEmail(String email);
 }

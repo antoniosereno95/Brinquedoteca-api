@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -41,5 +42,15 @@ public class ChildService {
                 .findByEmail(parentEmail)
                 .orElseThrow(() -> new NotFoundException("Não foi possível encontrar pai ou responsável"));
         return parent.getChildren();
+    }
+
+    public Child getChild(String parentEmail, Long childId) {
+        List<Child> children = listChildren(parentEmail);
+        return children
+                .stream()
+                .filter(c -> c.getId().equals(childId))
+                .findFirst().orElseThrow(() -> new NotFoundException("Child not found"));
+
+
     }
 }

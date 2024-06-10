@@ -1,10 +1,12 @@
 package com.upe.brinquedotecaapi.controller;
 
+import com.upe.brinquedotecaapi.controller.responses.ChildInfoResponse;
 import com.upe.brinquedotecaapi.controller.responses.ChildRegistrationResponse;
 import com.upe.brinquedotecaapi.controller.responses.ListChildrenResponse;
 import com.upe.brinquedotecaapi.model.dtos.ChildRegistrationDTO;
 import com.upe.brinquedotecaapi.service.ChildService;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +24,14 @@ public class ChildController {
     }
 
     @Operation(summary = "Retorna todas as crianças de um responsável")
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<?> listChildren(@RequestParam String parentEmail) {
         return ResponseEntity.ok(new ListChildrenResponse(childService.listChildren(parentEmail)));
     }
-}
+
+    @Operation(summary = "Retorna as informações da criança")
+    @GetMapping
+    public ResponseEntity<?> getChildInfo(@RequestParam String parentEmail, @RequestParam Long childId) {
+        return ResponseEntity.ok(new ChildInfoResponse(childService.getChild(parentEmail, childId)));
+    }
+ }

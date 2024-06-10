@@ -57,7 +57,7 @@ public class UserService {
     @Transactional
     public Brinquedista brinquedistaRegister(BrinquedistaRegistrationDTO registrationDTO) {
 
-        if (brinquedistaRepository.findBrinquedistaByEmail(registrationDTO.getEmail()).isPresent()) {
+        if (brinquedistaRepository.findByEmail(registrationDTO.getEmail()).isPresent()) {
             throw new ConflictException("Usuário já existe");
         }
 
@@ -74,7 +74,7 @@ public class UserService {
 
     public Brinquedista brinquedistaLogin(LoginDTO loginDTO) {
         Brinquedista brinquedista = brinquedistaRepository
-                .findBrinquedistaByEmail(loginDTO.getEmail())
+                .findByEmail(loginDTO.getEmail())
                 .orElseThrow(() -> new NotFoundException("Ocorreu um erro ao realizar o login"));
 
         if (loginDTO.getPassword().equals(brinquedista.getPassword())) {
@@ -86,6 +86,12 @@ public class UserService {
 
     public Parent findParentByEmail(String parentEmail) {
         return parentRepository
+                .findByEmail(parentEmail)
+                .orElseThrow(() -> new NotFoundException("Não foi possível encontrar pai ou responsável"));
+    }
+
+    public Brinquedista findBrinquedistaByEmail(String parentEmail) {
+        return brinquedistaRepository
                 .findByEmail(parentEmail)
                 .orElseThrow(() -> new NotFoundException("Não foi possível encontrar pai ou responsável"));
     }

@@ -49,7 +49,7 @@ public class AppointmentService {
     public  Map<LocalDate, List<AppointmentWeeklyListingDTO>> listWeeksAppointments() {
         LocalDate now = LocalDate.now();
         LocalDate startOfWeek = now.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-        LocalDate endOfWeek = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)); // Include the entire week
+        LocalDate endOfWeek = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
 
         LocalDateTime startOfWeekDateTime = LocalDateTime.of(startOfWeek, LocalTime.MIN);
         LocalDateTime endOfWeekDateTime = LocalDateTime.of(endOfWeek, LocalTime.MAX);
