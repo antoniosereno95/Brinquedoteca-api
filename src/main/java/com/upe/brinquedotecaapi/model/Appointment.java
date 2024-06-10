@@ -17,10 +17,12 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime dateTime;
+    private LocalDateTime arrival;
 
-    @ManyToMany
-    private List<Child> child;
+    private LocalDateTime retrival;
+
+    @ManyToOne
+    private Child child;
 
     @ManyToOne
     private Parent parent;

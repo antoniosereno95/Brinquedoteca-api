@@ -23,7 +23,7 @@ public class Child extends Person {
 
     private String description;
 
-    @OneToMany
+    @OneToMany(mappedBy = "child")
     private List<Appointment> appointment;
 
     @OneToOne

@@ -29,7 +29,7 @@ public class UserService {
     private final AddressRepository addressRepository;
 
     public Parent registerParent(ParentRegistrationDTO registrationDTO) {
-        if (findParentByEmail(registrationDTO.getEmail()) != null) {
+        if (parentRepository.findByEmail(registrationDTO.getEmail()).isPresent()) {
             throw new ConflictException("Usuário já existe");
         }
         Parent parent = new Parent();
