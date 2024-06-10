@@ -1,51 +1,34 @@
 package com.upe.brinquedotecaapi.controller;
 
-import com.upe.brinquedotecaapi.model.Parent;
-import com.upe.brinquedotecaapi.service.ParentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+
+
+
+import com.upe.brinquedotecaapi.model.dtos.LoginDTO;
+import com.upe.brinquedotecaapi.model.dtos.ParentRegistrationDTO;
+import com.upe.brinquedotecaapi.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
-public class ParentController {
+@RequestMapping("api/v1/parent")
+@RequiredArgsConstructor
+public class UserController {
 
-    @Autowired
-    private ParentService parentService;
+    private final UserService userService;
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) { //esse recebimento do RequestBody vai ter que mudar pq depende do JSON que chega no frontend
-        Optional<Parent> parentOpt = parentService.login(loginRequest.getEmail(), loginRequest.getSenha());
-        if (parentOpt.isPresent()) {
-            return ResponseEntity.ok("Login successful!");
-        } else {
-            return ResponseEntity.status(401).body("Invalid email or password");
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerParent(@RequestBody ParentRegistrationDTO registrationDTO) {
+            return ResponseEntity.ok(userService.registerParent(registrationDTO));
         }
+
+    @PostMapping("/login/parent")
+    public ResponseEntity<?> ParentLogin(@RequestBody LoginDTO loginDTO) {
+        return ResponseEntity.ok(userService.parentLogin(loginDTO));
     }
 }
-
-class LoginRequest {
-    private String email;
-    private String senha;
-
-    // Getters e setters
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-}
-
