@@ -11,6 +11,5 @@ import java.time.LocalDateTime;
 public class AppointmentDTO {
     private LocalDateTime arrival;
     private LocalDateTime retrival;
-    private String parentEmail;
     private Long childId;
 }

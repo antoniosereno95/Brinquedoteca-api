@@ -4,6 +4,7 @@ package com.upe.brinquedotecaapi.service;
 import com.upe.brinquedotecaapi.model.Appointment;
 import com.upe.brinquedotecaapi.model.Child;
 import com.upe.brinquedotecaapi.model.Parent;
+import com.upe.brinquedotecaapi.model.Person;
 import com.upe.brinquedotecaapi.model.dtos.ChildRegistrationDTO;
 import com.upe.brinquedotecaapi.repository.Childrepository;
 import com.upe.brinquedotecaapi.repository.ParentRepository;
@@ -23,8 +24,8 @@ public class ChildService {
     private final ParentRepository parentRepository;
     private final UserService userService;
 
-    public Child addChildToParent(ChildRegistrationDTO childRegistrationDTO) {
-        Parent parent = userService.findParentByEmail(childRegistrationDTO.getParentEmail());
+    public Child addChildToParent(ChildRegistrationDTO childRegistrationDTO, Person person) {
+        Parent parent = userService.findParentByEmail(person.getEmail());
         Child child = new Child();
         List<Appointment> appointmentList = new ArrayList<>();
         child.setAppointment(appointmentList);

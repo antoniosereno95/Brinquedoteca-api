@@ -1,9 +1,6 @@
 package com.upe.brinquedotecaapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,4 +26,7 @@ public class Address {
     private int number;
 
     private String supplement;
+
+    @OneToOne
+    private Person person;
 }

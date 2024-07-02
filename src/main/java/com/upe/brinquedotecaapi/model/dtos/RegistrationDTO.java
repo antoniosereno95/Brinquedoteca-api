@@ -1,6 +1,7 @@
 package com.upe.brinquedotecaapi.model.dtos;
 
 
+import com.upe.brinquedotecaapi.model.RoleEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -51,6 +52,7 @@ public class RegistrationDTO {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime birthday;
 
+    private RoleEnum role;
 
 
 }

@@ -16,7 +16,6 @@ public class ChildRegistrationDTO {
     private String name;
     private String lastName;
     private AddressDTO address;
-    private String parentEmail;
     private String observations;
     private String description;
     private LocalDateTime birthday;

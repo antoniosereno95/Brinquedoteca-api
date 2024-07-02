@@ -2,6 +2,7 @@ package com.upe.brinquedotecaapi.service;
 import com.upe.brinquedotecaapi.model.Appointment;
 import com.upe.brinquedotecaapi.model.Child;
 import com.upe.brinquedotecaapi.model.Parent;
+import com.upe.brinquedotecaapi.model.Person;
 import com.upe.brinquedotecaapi.model.dtos.AppointmentDTO;
 import com.upe.brinquedotecaapi.model.dtos.AppointmentWeeklyListingDTO;
 import com.upe.brinquedotecaapi.repository.AppointmentRepository;
@@ -25,9 +26,10 @@ public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
     private final UserService userService;
 
-    public Appointment createAppointment(AppointmentDTO appointmentDTO) {
+    public Appointment createAppointment(AppointmentDTO appointmentDTO, Person person) {
+
         Appointment appointment = new Appointment();
-        Parent parent = userService.findParentByEmail(appointmentDTO.getParentEmail());
+        Parent parent = userService.findParentByEmail(person.getEmail());
         Child child = parent
                 .getChildren()
                 .stream()
