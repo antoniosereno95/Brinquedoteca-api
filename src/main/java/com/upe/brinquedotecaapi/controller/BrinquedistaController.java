@@ -1,6 +1,7 @@
 package com.upe.brinquedotecaapi.controller;
 
 
+import com.upe.brinquedotecaapi.controller.responses.AuthenticationResponse;
 import com.upe.brinquedotecaapi.controller.responses.BrinquedistaInfoResponse;
 import com.upe.brinquedotecaapi.model.Person;
 import com.upe.brinquedotecaapi.model.dtos.BrinquedistaRegistrationDTO;
@@ -23,20 +24,20 @@ public class BrinquedistaController {
 
     @Operation(summary = "Registrar brinquedista")
     @PostMapping("/register")
-    public ResponseEntity<?> registerBrinquedista(@RequestBody BrinquedistaRegistrationDTO registrationDTO) {
+    public ResponseEntity<AuthenticationResponse> registerBrinquedista(@RequestBody BrinquedistaRegistrationDTO registrationDTO) {
         return ResponseEntity.ok(authenticationService.registerBrinquesta(registrationDTO));
     }
 
     @Operation(summary = "Fazer login como brinquedista")
     @PostMapping("/login")
-    public ResponseEntity<?> loginBrinquedista(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<AuthenticationResponse> loginBrinquedista(@RequestBody LoginDTO loginDTO) {
 
         return ResponseEntity.ok(authenticationService.authenticate(loginDTO));
     }
 
     @Operation(summary = "Resgatar as informações do brinquedista")
     @GetMapping("/info")
-    public ResponseEntity<?> getBrinquedistaInfo(@AuthenticationPrincipal Person person) {
+    public ResponseEntity<BrinquedistaInfoResponse> getBrinquedistaInfo(@AuthenticationPrincipal Person person) {
         return ResponseEntity.ok(new BrinquedistaInfoResponse(userService.findBrinquedistaByEmail(person.getEmail())));
     }
 }
