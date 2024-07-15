@@ -11,6 +11,8 @@ public class BrinquedistaInfoResponse {
     private final Course course;
     private final String phone;
     private final Address address;
+    private final String email;
+    private final String cpf;
 
     public BrinquedistaInfoResponse(Brinquedista brinquedista) {
         this.name = brinquedista.getName();
@@ -18,5 +20,7 @@ public class BrinquedistaInfoResponse {
         this.course = brinquedista.getCourse();
         this.phone = brinquedista.getPhone();
         this.address = brinquedista.getAddress();
+        this.email = brinquedista.getEmail();
+        this.cpf = brinquedista.getCpf();
     }
 }
