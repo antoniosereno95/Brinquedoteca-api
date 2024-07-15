@@ -13,6 +13,10 @@ import java.util.stream.Collectors;
 public class ParentInfoResponse {
     private final String name;
     private final String lastName;
+    private final String email;
+    private final String phone;
+    private final String cpf;
+    private final String password;
     private final List<ChildRegistrationResponse> children;
 
     private final LinkToInstitucion linkToInstitucion;
@@ -24,6 +28,11 @@ public class ParentInfoResponse {
         this.children = parent.getChildren().stream().map(ChildRegistrationResponse::new).collect(Collectors.toList());
         this.linkToInstitucion = parent.getLinkToInstitucion();
         this.address = parent.getAddress();
+        this.phone = parent.getPhone();
+        this.cpf = parent.getCpf();
+        this.password = parent.getPassword();
+        this.email = parent.getEmail();
+
 
     }
 }
