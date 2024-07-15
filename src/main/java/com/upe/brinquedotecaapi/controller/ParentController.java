@@ -43,4 +43,10 @@ public class  ParentController {
     public ResponseEntity<ParentInfoResponse> getParentInfo(@AuthenticationPrincipal Person person) {
         return ResponseEntity.ok(new ParentInfoResponse(userService.findParentByEmail(person.getEmail())));
     }
+
+    //@Operation(summary = "Atualiza os dados do responsável")
+    //@PutMapping
+    //public ResponseEntity<AuthenticationResponse> updateParent(@RequestBody ParentRegistrationDTO registrationDTO) {
+        //return ResponseEntity.ok(authenticationService.)
+    //}
 }
